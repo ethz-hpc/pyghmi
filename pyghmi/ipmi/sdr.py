@@ -188,19 +188,12 @@ class SensorReading(object):
 
     def __init__(self, reading, suffix):
         self.broken_sensor_ids = {}
-        self.health = const.Health.Ok
         self.type = reading['type']
-        self.value = None
-        self.imprecision = None
-        self.states = []
-        try:
-            self.health = reading['health']
-            self.states = reading['states']
-            self.state_ids = reading['state_ids']
-            self.value = reading['value']
-            self.imprecision = reading['imprecision']
-        except KeyError:
-            pass
+        self.health = reading.get('health', const.Health.Ok)
+        self.states = reading.get('states', [])
+        self.state_ids = reading.get('state_ids', [])
+        self.value = reading.get('value', None)
+        self.imprecision = reading.get('imprecision', None)
         if 'unavailable' in reading:
             self.unavailable = 1
         self.units = suffix
