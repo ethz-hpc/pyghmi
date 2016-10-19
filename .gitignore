@@ -1,5 +1,7 @@
 AUTHORS
 ChangeLog
 dist/
+pyghmi.egg-info/
 python_ipmi.egg-info/
+.eggs/
 .tox
