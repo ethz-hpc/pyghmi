@@ -33,6 +33,7 @@ import math
 import pyghmi.constants as const
 import pyghmi.exceptions as exc
 import pyghmi.ipmi.private.constants as ipmiconst
+import six
 import struct
 import weakref
 
@@ -689,7 +690,7 @@ class SDR(object):
             del self.sensors[sid]
 
     def get_sensor_numbers(self):
-        return self.sensors.iterkeys()
+        return six.iterkeys(self.sensors)
 
     def add_sdr(self, sdrbytes):
         newent = SDREntry(sdrbytes, self.ipmicmd)
